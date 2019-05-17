@@ -1,0 +1,1 @@
+Little script to get every isaac's img
