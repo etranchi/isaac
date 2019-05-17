@@ -33,7 +33,6 @@ def createFileImg(url_img, cardType):
         return ""
 
 def getData(driver):
-    ret = []
     allElements = driver.find_elements(By.CLASS_NAME, 'single-team')
     for elm in allElements:
         cardType = elm.find_element(By.CLASS_NAME, 'team-info').find_element(By.TAG_NAME, 'h2').get_attribute('innerHTML')
@@ -42,7 +41,7 @@ def getData(driver):
         if url_img != "" and name != "":
             img = ImageIO.imread(url_img)
             ImageIO.imwrite(name,img, "png")
-    return ret
+    return
 
 driver = webdriver.Chrome() 
 
