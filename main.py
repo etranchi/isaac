@@ -26,8 +26,6 @@ def createFileImg(url_img, cardType):
     result = email.findall(img_alt)
     result[0] = ''.join([i for i in result[0] if not i.isdigit()])
     if CardType.has_value(cardType):
-        if not os.path.exists(CardType(cardType).name):
-            os.makedirs(CardType(cardType).name)
         path = CardType(cardType).name + "/" + result[0] + "." + result[len(result) - 1]
         open(os.path.join(os.path.curdir, path), 'wb')
         return path
@@ -47,13 +45,13 @@ def getData(driver):
     return ret
 
 driver = webdriver.Chrome() 
-data = []
+
+for card in CardType :
+    os.makedirs(card.name)
 
 for x in range(0, 44):    
     driver.get(url + "index.php?page=" + str(x))
-    data.append(getData(driver))
-
-print(data)
+    getData(driver)
 
 
 
